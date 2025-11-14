@@ -22,14 +22,18 @@ CHECK_STASH = config["check_stash"]
 def send_hook(message_content):
     try:
         print(message_content)
-        payload = {
-            "username": "Contributions",
-            "content": message_content
-        }
-        headers = {"Content-type": "application/json"}
-        response = requests.post(DISCORD_WEBHOOK_URL, data=json.dumps(payload), headers=headers)
-        response.raise_for_status()
-    except: pass
+        
+        if DISCORD_WEBHOOK_URL:
+            payload = {
+                "username": "Contributions",
+                "content": message_content
+            }
+        
+            headers = {"Content-type": "application/json"}
+            response = requests.post(DISCORD_WEBHOOK_URL, data=json.dumps(payload), headers=headers)
+            response.raise_for_status()
+    except: 
+        pass
 
 def handle_folder(folder_name):
     final_path = os.path.join(CONTRIB_PATH, folder_name)
@@ -49,8 +53,9 @@ def handle_folder(folder_name):
                 shutil.move(file_path, os.path.join(stash_folder, filename))
                 send_hook("Done")
             else:
-                send_hook("Signature Invalid! deleting...")
-                os.remove(file_path)
+                send_hook("Signature Invalid! Consider deleting...")
+                #os.remove(file_path)
+        return
     except Exception as e:
         send_hook(f"An error occurred: {str(e)}")
         raise e

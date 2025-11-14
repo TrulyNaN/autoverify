@@ -1,4 +1,8 @@
-# autoverif 
+# Description
+
+Fork of https://github.com/themoonisacheese/autoverif where I updated the requirements. It will already need an update in December 2025 since pkg_resources will get deprecated soon.
+
+# autoverify 
 Auto verify NSP, NSZ, XCI, XCZ to check if they have a valid hash and signature, on Linux and Windows.
 
 Verification code stolen from NSCB, with mods from @seiya-git.
@@ -31,6 +35,8 @@ source .venv/bin/activate
 pip3 install -r requirements.txt
 ```
 
+Put your prod.keys in the main folder.
+
 # Examples
 ```
 python3 autoverify.py -c /path/to/unverified/games -s /path/to/stash
@@ -42,4 +48,4 @@ If the folders in the contrib or stash directory do not exist, they will be crea
 
 Files that pass the signature verification will be moved to their corresponding folder in the stash directory (ie, Base to Base, etc. Only the source folder is actually considered, not whether the file really is a Base nsp).
 
-Files that do not pass the signature verification will be **PERMANENTLY DELETED** (they don't validate anyway why do you have them?). This may or may not include random non-verifiable files (eg: text files, photos of your cat, your hard drive's partition table) that happen to be there.
+Files that do not pass the signature verification should be **DELETED** by you manually. This version does **NOT** auto-delete if the signature fails, as opposed to themoonisacheese's version.

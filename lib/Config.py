@@ -33,7 +33,7 @@ class Paths:
 		self.scan = '.'
 		self.titleDatabase = 'titledb'
 		self.hactool = 'bin/hactool'
-		self.keys = 'keys.txt'
+		self.keys = 'prod.keys'
 		self.NXclientCert = 'nx_tls_client_cert.pem'
 		self.shopNCert = 'ShopN.pem'
 		self.nspOut = '_NSPOUT'
